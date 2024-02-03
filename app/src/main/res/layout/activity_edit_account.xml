@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent">
+
+    <ScrollView
+         android:layout_height="match_parent"
+         android:layout_width="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_height="match_parent"
+             android:layout_width="match_parent">
+
+            <EditText
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:hint="Name"
+                 app:layout_constraintTop_toTopOf="parent"
+                 android:singleLine="true"
+                 app:layout_constraintBottom_toTopOf="@id/images"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 android:id="@+id/name" />
+
+            <LinearLayout
+                 android:layout_height="300dp"
+                 android:layout_width="match_parent"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintTop_toBottomOf="@id/name"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 android:id="@+id/images">
+
+                <ImageView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:scaleType="fitCenter"
+                     android:src="@drawable/ic_person"
+                     android:layout_weight="1"
+                     android:id="@+id/profile" />
+
+                <ImageView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:scaleType="fitCenter"
+                     android:src="@drawable/default_banner"
+                     android:layout_weight="1"
+                     android:id="@+id/banner" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:layout_margin="@dimen/fab_margin"
+         app:srcCompat="@drawable/ic_save"
+         android:layout_gravity="bottom|end"
+         android:id="@+id/fab" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
