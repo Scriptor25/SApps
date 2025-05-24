@@ -39,7 +39,7 @@ public class EditAccountActivity extends AppCompatActivity {
                     new ActivityResultContracts.StartActivityForResult(),
                     result -> {
                         if (result.getResultCode() == RESULT_OK) {
-                            Uri uri = result.getData().getData();
+                            final var uri = result.getData().getData();
                             mProfile = uri;
                             mBinding.profile.setImageURI(uri);
                         }
@@ -49,14 +49,14 @@ public class EditAccountActivity extends AppCompatActivity {
                     new ActivityResultContracts.StartActivityForResult(),
                     result -> {
                         if (result.getResultCode() == RESULT_OK) {
-                            Uri uri = result.getData().getData();
+                            final var uri = result.getData().getData();
                             mBanner = uri;
                             mBinding.banner.setImageURI(uri);
                         }
                     });
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mBinding = ActivityEditAccountBinding.inflate(getLayoutInflater());
@@ -69,7 +69,7 @@ public class EditAccountActivity extends AppCompatActivity {
 
         mBinding.fab.setOnClickListener(
                 v -> {
-                    String name = mBinding.name.getText().toString().trim();
+                    final var name = mBinding.name.getText().toString().trim();
                     if (!name.isEmpty()) {
                         mUser.name = name;
                         mData.setValue(mUser);
@@ -92,7 +92,7 @@ public class EditAccountActivity extends AppCompatActivity {
 
         mBinding.profile.setOnClickListener(
                 v -> {
-                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    final var intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
                     intent.setType("image/*");
 
@@ -101,7 +101,7 @@ public class EditAccountActivity extends AppCompatActivity {
 
         mBinding.banner.setOnClickListener(
                 v -> {
-                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    final var intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
                     intent.setType("image/*");
 
@@ -115,7 +115,8 @@ public class EditAccountActivity extends AppCompatActivity {
         mBannerRef = FB.getStorage().getReference("users/banner").child(mUID);
     }
 
-    private Task<Uri> onContinueGetProfileUri(Task<UploadTask.TaskSnapshot> task) throws Exception {
+    private Task<Uri> onContinueGetProfileUri(final Task<UploadTask.TaskSnapshot> task)
+            throws Exception {
         if (task.isSuccessful()) {
             return mProfileRef.getDownloadUrl();
         } else {
@@ -123,10 +124,10 @@ public class EditAccountActivity extends AppCompatActivity {
         }
     }
 
-    private void onGetProfileUriComplete(Task<Uri> task) {
+    private void onGetProfileUriComplete(final Task<Uri> task) {
         if (task.isSuccessful()) {
             mProfile = null;
-            Uri uri = task.getResult();
+            final var uri = task.getResult();
             mUser.profile = uri.toString();
             mData.setValue(mUser);
         } else {
@@ -138,7 +139,8 @@ public class EditAccountActivity extends AppCompatActivity {
         }
     }
 
-    private Task<Uri> onContinueGetBannerUri(Task<UploadTask.TaskSnapshot> task) throws Exception {
+    private Task<Uri> onContinueGetBannerUri(final Task<UploadTask.TaskSnapshot> task)
+            throws Exception {
         if (task.isSuccessful()) {
             return mBannerRef.getDownloadUrl();
         } else {
@@ -146,10 +148,10 @@ public class EditAccountActivity extends AppCompatActivity {
         }
     }
 
-    private void onGetBannerUriComplete(Task<Uri> task) {
+    private void onGetBannerUriComplete(final Task<Uri> task) {
         if (task.isSuccessful()) {
             mBanner = null;
-            Uri uri = task.getResult();
+            final var uri = task.getResult();
             mUser.banner = uri.toString();
             mData.setValue(mUser);
         } else {
@@ -161,7 +163,7 @@ public class EditAccountActivity extends AppCompatActivity {
         }
     }
 
-    private void onGetUserComplete(Task<DataSnapshot> task) {
+    private void onGetUserComplete(final Task<DataSnapshot> task) {
         if (task.isSuccessful()) {
             mUser = task.getResult().getValue(UserModel.class);
             mBinding.name.setText(mUser.name);

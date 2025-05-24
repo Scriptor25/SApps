@@ -23,7 +23,7 @@ public class AppActivity extends AppCompatActivity {
     private DatabaseReference mData;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mBinding = ActivityAppBinding.inflate(getLayoutInflater());
@@ -36,7 +36,7 @@ public class AppActivity extends AppCompatActivity {
         mData.get().addOnCompleteListener(this::onGetAppComplete);
     }
 
-    private void onGetAppComplete(Task<DataSnapshot> task) {
+    private void onGetAppComplete(final Task<DataSnapshot> task) {
         if (task.isSuccessful()) {
             mApp = task.getResult().getValue(AppModel.class);
 
@@ -52,12 +52,12 @@ public class AppActivity extends AppCompatActivity {
     }
 
     private void goEditApp() {
-        var intent = new Intent(getApplicationContext(), EditAppActivity.class);
+        final var intent = new Intent(getApplicationContext(), EditAppActivity.class);
         startActivity(intent);
     }
 
     private void goAccount() {
-        var intent = new Intent(getApplicationContext(), AccountActivity.class);
+        final var intent = new Intent(getApplicationContext(), AccountActivity.class);
         startActivity(intent);
     }
 }

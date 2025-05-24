@@ -11,7 +11,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ActivitySettingsBinding mBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mBinding = ActivitySettingsBinding.inflate(getLayoutInflater());

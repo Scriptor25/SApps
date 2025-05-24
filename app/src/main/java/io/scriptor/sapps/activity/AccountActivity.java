@@ -24,7 +24,7 @@ public class AccountActivity extends AppCompatActivity {
     private UserModel mUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mBinding = ActivityAccountBinding.inflate(getLayoutInflater());
@@ -52,11 +52,11 @@ public class AccountActivity extends AppCompatActivity {
     }
 
     private void goEditAccount() {
-        Intent intent = new Intent(getApplicationContext(), EditAccountActivity.class);
+        final var intent = new Intent(getApplicationContext(), EditAccountActivity.class);
         startActivity(intent);
     }
 
-    private void onGetUserComplete(Task<DataSnapshot> task) {
+    private void onGetUserComplete(final Task<DataSnapshot> task) {
         if (task.isSuccessful()) {
             mUser = task.getResult().getValue(UserModel.class);
 

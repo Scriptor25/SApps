@@ -12,21 +12,21 @@ public class SearchActivity extends AppCompatActivity {
     private ActivitySearchBinding mBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mBinding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         setSupportActionBar(mBinding.toolbar);
 
-        var query =
+        final var query =
                 getIntent().hasExtra("query")
                         ? getIntent().getStringArrayExtra("query")
                         : new String[0];
     }
 
-    private void goApp(String aid) {
-        var intent = new Intent(getApplicationContext(), AppActivity.class);
+    private void goApp(final String aid) {
+        final var intent = new Intent(getApplicationContext(), AppActivity.class);
         intent.putExtra("aid", aid);
         startActivity(intent);
     }

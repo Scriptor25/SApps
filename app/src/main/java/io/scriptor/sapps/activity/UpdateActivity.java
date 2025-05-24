@@ -12,7 +12,7 @@ public class UpdateActivity extends AppCompatActivity {
     private ActivityUpdateBinding mBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mBinding = ActivityUpdateBinding.inflate(getLayoutInflater());
@@ -21,7 +21,7 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void goApp() {
-        Intent intent = new Intent(getApplicationContext(), AppActivity.class);
+        final var intent = new Intent(getApplicationContext(), AppActivity.class);
         startActivity(intent);
     }
 }

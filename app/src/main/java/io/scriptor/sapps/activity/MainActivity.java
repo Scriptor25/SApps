@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (FB.getAuth().getCurrentUser() == null) {
@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.menu_top, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.search:
@@ -67,33 +67,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goLogin() {
-        var intent = new Intent(getApplicationContext(), LoginActivity.class);
+        final var intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void goSettings() {
-        var intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        final var intent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(intent);
     }
 
     private void goAccount() {
-        var intent = new Intent(getApplicationContext(), AccountActivity.class);
+        final var intent = new Intent(getApplicationContext(), AccountActivity.class);
         startActivity(intent);
     }
 
     private void goSearch() {
-        var intent = new Intent(getApplicationContext(), SearchActivity.class);
+        final var intent = new Intent(getApplicationContext(), SearchActivity.class);
         startActivity(intent);
     }
 
     private void goUpdate() {
-        var intent = new Intent(getApplicationContext(), UpdateActivity.class);
+        final var intent = new Intent(getApplicationContext(), UpdateActivity.class);
         startActivity(intent);
     }
 
     private void goPublishApp() {
-        var intent = new Intent(getApplicationContext(), EditAppActivity.class);
+        final var intent = new Intent(getApplicationContext(), EditAppActivity.class);
         startActivity(intent);
     }
 }

@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding mBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (FB.getAuth().getCurrentUser() != null) {
@@ -37,19 +37,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onLoginComplete() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        final var intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void onClickLogin(View v) {
+    private void onClickLogin(final View v) {
         final var email = mBinding.usernameEmail.getText().toString().trim();
         final var password = mBinding.password.getText().toString().trim();
 
         onLogin(email, password);
     }
 
-    private void onLogin(String email, String password) {
+    private void onLogin(final String email, final String password) {
         if (email.isEmpty()) {
             message("Please enter your email address");
             return;
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this::onCompleteEmailLogin);
     }
 
-    private void onCompleteEmailLogin(Task<AuthResult> task) {
+    private void onCompleteEmailLogin(final Task<AuthResult> task) {
         if (task.isSuccessful()) {
             onLoginComplete();
         } else {
@@ -72,13 +72,13 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void onClickForgotPassword(View v) {
+    private void onClickForgotPassword(final View v) {
         final var email = mBinding.usernameEmail.getText().toString().trim();
 
         onForgotPassword(email);
     }
 
-    private void onForgotPassword(String email) {
+    private void onForgotPassword(final String email) {
         if (email.isEmpty()) {
             message("Please enter your email address");
             return;
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this::onCompleteSendPasswordResetEmail);
     }
 
-    private void onCompleteSendPasswordResetEmail(Task<Void> task) {
+    private void onCompleteSendPasswordResetEmail(final Task<Void> task) {
         if (task.isSuccessful()) {
             message("Successfully sent password reset email");
         } else {
@@ -97,14 +97,14 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void onClickSignup(View v) {
+    private void onClickSignup(final View v) {
         final var email = mBinding.usernameEmail.getText().toString().trim();
         final var password = mBinding.password.getText().toString().trim();
 
         onSignup(email, password);
     }
 
-    private void onSignup(String email, String password) {
+    private void onSignup(final String email, final String password) {
         if (email.isEmpty()) {
             message("Please enter a valid email address");
             return;
@@ -119,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this::onCompleteEmailSignup);
     }
 
-    private void onCompleteEmailSignup(Task<AuthResult> task) {
+    private void onCompleteEmailSignup(final Task<AuthResult> task) {
         if (task.isSuccessful()) {
             var user = new UserModel();
             user.uid = FB.getAuth().getCurrentUser().getUid();
@@ -131,11 +131,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void onClickGoogle(View v) {
+    private void onClickGoogle(final View v) {
         message("Google sign in not yet supported");
     }
 
-    private void message(String message) {
+    private void message(final String message) {
         Snackbar.make(mBinding.getRoot(), message, Snackbar.LENGTH_LONG).show();
     }
 }

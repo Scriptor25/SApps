@@ -30,7 +30,7 @@ public class EditAppActivity extends AppCompatActivity {
     private StorageReference mSlideStorage;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mBinding = ActivityEditAppBinding.inflate(getLayoutInflater());
@@ -54,7 +54,7 @@ public class EditAppActivity extends AppCompatActivity {
         mBinding.slide.setAdapter(new SlideAdapter());
     }
 
-    private void onGetAppComplete(Task<DataSnapshot> task) {
+    private void onGetAppComplete(final Task<DataSnapshot> task) {
         if (task.isSuccessful()) {
             mApp = task.getResult().getValue(AppModel.class);
             if (mApp == null) {
