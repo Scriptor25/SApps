@@ -1,9 +1,10 @@
-package io.scriptor.sapps;
+package io.scriptor.sapps.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.auth.FirebaseAuth;
+
 import io.scriptor.sapps.databinding.ActivitySearchBinding;
 
 public class SearchActivity extends AppCompatActivity {
@@ -17,10 +18,16 @@ public class SearchActivity extends AppCompatActivity {
         mBinding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         setSupportActionBar(mBinding.toolbar);
+
+        var query =
+                getIntent().hasExtra("query")
+                        ? getIntent().getStringArrayExtra("query")
+                        : new String[0];
     }
 
-    private void goApp() {
-        Intent intent = new Intent(getApplicationContext(), AppActivity.class);
+    private void goApp(String aid) {
+        var intent = new Intent(getApplicationContext(), AppActivity.class);
+        intent.putExtra("aid", aid);
         startActivity(intent);
     }
 }

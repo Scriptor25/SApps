@@ -1,4 +1,4 @@
-package io.scriptor.sapps;
+package io.scriptor.sapps.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 
-import com.google.firebase.auth.FirebaseUser;
+import io.scriptor.sapps.FB;
 import io.scriptor.sapps.databinding.ActivityLoginBinding;
-import io.scriptor.sapps.firebase.FB;
-import io.scriptor.sapps.firebase.User;
+import io.scriptor.sapps.model.UserModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize Firebase Auth
         if (FB.getAuth().getCurrentUser() != null) {
             onLoginComplete();
             return;
@@ -123,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onCompleteEmailSignup(Task<AuthResult> task) {
         if (task.isSuccessful()) {
-            User user = new User();
+            var user = new UserModel();
             user.uid = FB.getAuth().getCurrentUser().getUid();
             FB.getDatabase().getReference("users").child(user.uid).setValue(user);
 
@@ -134,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onClickGoogle(View v) {
-        message("Google Sign in not yet supported");
+        message("Google sign in not yet supported");
     }
 
     private void message(String message) {

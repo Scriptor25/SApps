@@ -1,19 +1,15 @@
-package io.scriptor.sapps;
+package io.scriptor.sapps.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
+import io.scriptor.sapps.FB;
+import io.scriptor.sapps.R;
 import io.scriptor.sapps.databinding.ActivityMainBinding;
-import io.scriptor.sapps.firebase.FB;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,33 +67,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goLogin() {
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        var intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void goSettings() {
-        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        var intent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(intent);
     }
 
     private void goAccount() {
-        Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
+        var intent = new Intent(getApplicationContext(), AccountActivity.class);
         startActivity(intent);
     }
 
     private void goSearch() {
-        Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+        var intent = new Intent(getApplicationContext(), SearchActivity.class);
         startActivity(intent);
     }
 
     private void goUpdate() {
-        Intent intent = new Intent(getApplicationContext(), UpdateActivity.class);
+        var intent = new Intent(getApplicationContext(), UpdateActivity.class);
         startActivity(intent);
     }
 
     private void goPublishApp() {
-        Intent intent = new Intent(getApplicationContext(), EditAppActivity.class);
+        var intent = new Intent(getApplicationContext(), EditAppActivity.class);
         startActivity(intent);
     }
 }

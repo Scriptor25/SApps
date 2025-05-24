@@ -1,4 +1,4 @@
-package io.scriptor.sapps;
+package io.scriptor.sapps.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 
+import io.scriptor.sapps.FB;
 import io.scriptor.sapps.databinding.ActivityAccountBinding;
-import io.scriptor.sapps.firebase.FB;
-import io.scriptor.sapps.firebase.User;
+import io.scriptor.sapps.model.UserModel;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class AccountActivity extends AppCompatActivity {
 
     private String mUID;
     private DatabaseReference mData;
-    private User mUser;
+    private UserModel mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class AccountActivity extends AppCompatActivity {
 
     private void onGetUserComplete(Task<DataSnapshot> task) {
         if (task.isSuccessful()) {
-            mUser = task.getResult().getValue(User.class);
+            mUser = task.getResult().getValue(UserModel.class);
 
             if (mUser.name != null) mBinding.toolbarLayout.setTitle(mUser.name);
 

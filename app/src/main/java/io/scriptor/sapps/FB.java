@@ -1,4 +1,4 @@
-package io.scriptor.sapps.firebase;
+package io.scriptor.sapps;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;

@@ -1,6 +1,6 @@
-package io.scriptor.sapps.firebase;
+package io.scriptor.sapps.model;
 
-public class User {
+public class UserModel {
 
     public String uid;
     public String name;

@@ -1,31 +1,34 @@
 package io.scriptor.sapps.adapter;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.ImageView;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
-import io.scriptor.sapps.R;
-import java.util.List;
 
-public class SlideAdapter<VH extends RecyclerView.ViewHolder> extends ListAdapter<String, VH> {
+public class SlideAdapter extends ListAdapter<String, SlideViewHolder> {
 
-    public SlideAdapter(Context context, List<String> data) {
-        super(context, R.layout.adapter_slide, data);
+    private static final DiffUtil.ItemCallback<String> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<>() {
+
+                @Override
+                public boolean areItemsTheSame(String o, String n) {
+                    return o == n;
+                }
+
+                @Override
+                public boolean areContentsTheSame(String o, String n) {
+                    return o.equals(n);
+                }
+            };
+
+    public SlideAdapter() {
+        super(DIFF_CALLBACK);
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        if (view == null)
-            view = LayoutInflater.from(getContext()).inflate(R.layout.adapter_slide, null);
+    public void onBindViewHolder(SlideViewHolder holder, int position) {}
 
-        ImageView data = view.findViewById(R.id.data);
-        Glide.with(getContext()).load(getItem(position)).into(data);
-
-        return view;
+    @Override
+    public SlideViewHolder onCreateViewHolder(ViewGroup group, int position) {
+        return null;
     }
 }

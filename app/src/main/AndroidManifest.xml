@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Application">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,21 +21,21 @@
 
         </activity>
 
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".activity.LoginActivity" />
 
-        <activity android:name=".AccountActivity" />
+        <activity android:name=".activity.AccountActivity" />
 
-        <activity android:name=".AppActivity" />
+        <activity android:name=".activity.AppActivity" />
 
-        <activity android:name=".EditAccountActivity" />
+        <activity android:name=".activity.EditAccountActivity" />
 
-        <activity android:name=".EditAppActivity" />
+        <activity android:name=".activity.EditAppActivity" />
 
-        <activity android:name=".SearchActivity" />
+        <activity android:name=".activity.SearchActivity" />
 
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".activity.SettingsActivity" />
 
-        <activity android:name=".UpdateActivity" />
+        <activity android:name=".activity.UpdateActivity" />
 
     </application>
 

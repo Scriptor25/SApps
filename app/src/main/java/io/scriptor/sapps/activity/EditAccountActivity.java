@@ -1,4 +1,4 @@
-package io.scriptor.sapps;
+package io.scriptor.sapps.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,9 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import io.scriptor.sapps.FB;
 import io.scriptor.sapps.databinding.ActivityEditAccountBinding;
-import io.scriptor.sapps.firebase.FB;
-import io.scriptor.sapps.firebase.User;
+import io.scriptor.sapps.model.UserModel;
 
 public class EditAccountActivity extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class EditAccountActivity extends AppCompatActivity {
 
     private String mUID;
     private DatabaseReference mData;
-    private User mUser;
+    private UserModel mUser;
 
     private Uri mProfile;
     private Uri mBanner;
@@ -163,7 +163,7 @@ public class EditAccountActivity extends AppCompatActivity {
 
     private void onGetUserComplete(Task<DataSnapshot> task) {
         if (task.isSuccessful()) {
-            mUser = task.getResult().getValue(User.class);
+            mUser = task.getResult().getValue(UserModel.class);
             mBinding.name.setText(mUser.name);
 
             if (mUser.profile != null) Glide.with(this).load(mUser.profile).into(mBinding.profile);

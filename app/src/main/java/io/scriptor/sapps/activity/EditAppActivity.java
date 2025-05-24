@@ -1,12 +1,9 @@
-package io.scriptor.sapps;
+package io.scriptor.sapps.activity;
 
 import android.os.Bundle;
 
-import android.view.MotionEvent;
-import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -14,12 +11,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 
+import io.scriptor.sapps.FB;
 import io.scriptor.sapps.adapter.SlideAdapter;
 import io.scriptor.sapps.databinding.ActivityEditAppBinding;
+import io.scriptor.sapps.model.AppModel;
 
-import io.scriptor.sapps.firebase.App;
-import io.scriptor.sapps.firebase.FB;
-import java.util.Arrays;
 import java.util.UUID;
 
 public class EditAppActivity extends AppCompatActivity {
@@ -27,7 +23,7 @@ public class EditAppActivity extends AppCompatActivity {
     private ActivityEditAppBinding mBinding;
 
     private String mAID;
-    private App mApp;
+    private AppModel mApp;
     private DatabaseReference mData;
     private StorageReference mApkStorage;
     private StorageReference mIconStorage;
@@ -39,6 +35,8 @@ public class EditAppActivity extends AppCompatActivity {
 
         mBinding = ActivityEditAppBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.fab.setOnClickListener(v -> {});
 
         mAID =
                 getIntent().hasExtra("aid")
@@ -52,15 +50,19 @@ public class EditAppActivity extends AppCompatActivity {
         mIconStorage = FB.getStorage().getReference("sapps/apps/icon").child(mAID);
         mSlideStorage = FB.getStorage().getReference("sapps/apps/slide").child(mAID);
 
-        mBinding.app.setOnClickListener(v -> {});
-        mBinding.slide.setAdapter(new SlideAdapter(this, Arrays.asList(mApp.slide)));
+        mBinding.icon.setOnClickListener(v -> {});
+        mBinding.slide.setAdapter(new SlideAdapter());
     }
 
     private void onGetAppComplete(Task<DataSnapshot> task) {
         if (task.isSuccessful()) {
-            mApp = task.getResult().getValue(App.class);
+            mApp = task.getResult().getValue(AppModel.class);
+            if (mApp == null) {
+                mApp = new AppModel();
+                mApp.aid = mAID;
+            }
 
-            if (mApp.icon != null) Glide.with(this).load(mApp.icon).into(mBinding.app);
+            if (mApp.icon != null) Glide.with(this).load(mApp.icon).into(mBinding.icon);
             mBinding.description.setText(mApp.description);
         } else {
             Snackbar.make(

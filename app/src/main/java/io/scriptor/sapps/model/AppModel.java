@@ -1,6 +1,6 @@
-package io.scriptor.sapps.firebase;
+package io.scriptor.sapps.model;
 
-public class App {
+public class AppModel {
 
     public String aid; // id
     public String apk; // apk storage location
