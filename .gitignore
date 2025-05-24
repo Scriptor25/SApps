@@ -84,3 +84,4 @@ lint/tmp/
 
 .androidide/
 app/build/
+app/google-services.json
